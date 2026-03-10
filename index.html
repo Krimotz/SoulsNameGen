@@ -108,22 +108,37 @@
     }
 
     function generateName() {
-      if (Object.values(parts).some(list => list.length === 0)) {
-        alert("One or more name part lists are empty.");
-        return;
-      }
+  if (Object.values(parts).some(list => list.length === 0)) {
+    alert("One or more name part lists are empty.");
+    return;
+  }
 
-      if (lastName) {
-        history.unshift(lastName);
-        if (history.length > 25) history.pop();
-      }
+  if (lastName) {
+    history.unshift(lastName);
+    if (history.length > 25) history.pop();
+  }
 
-      const first = randomFrom(parts.A) + randomFrom(parts.B);
-      const last = randomFrom(parts.X) + randomFrom(parts.Y) + randomFrom(parts.Z);
-      lastName = `${first} ${last}`;
+  const title = randomFrom(parts.A);
+  const firstPart = randomFrom(parts.B);
+  const secondPart = randomFrom(parts.C);
+  const connector = randomFrom(parts.D);
+  const place = randomFrom(parts.E);
+  
+  const fullName = `${firstPart}${secondPart}`;
+  
+  // Randomly choose between formats
+  const format = Math.floor(Math.random() * 3);
+  
+  if (format === 0) {
+    lastName = `${title} ${fullName} ${connector} ${place}`;
+  } else if (format === 1) {
+    lastName = `${fullName} ${connector} ${place}`;
+  } else {
+    lastName = `${title} ${fullName}`;
+  }
 
-      document.getElementById("currentName").textContent = `Current Name: ${lastName}`;
-      updateHistory();
+  document.getElementById("currentName").textContent = `Current Name: ${lastName}`;
+  updateHistory();
     }
 
     function updateHistory() {

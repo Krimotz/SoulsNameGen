@@ -11,6 +11,7 @@
       max-width: 700px;
       margin: auto;
       background-color:#242320;
+      Color:#d47028;
     }
     button {
       width: 100%;
@@ -57,7 +58,7 @@
     <a href="multi_editor.html">Edit Name Parts</a>
   </div>
 
-  <div id="status">⏳ Loading name parts...</div>
+  <div id="status"> Loading name parts...</div>
   <button id="generateBtn" onclick="generateName()" disabled>Generate Name</button>
   <div id="currentName">Current Name: (none)</div>
 
@@ -91,14 +92,14 @@
         } catch (e) {
           failed = true;
           console.error(e);
-          document.getElementById("status").innerHTML = `❌ Error loading <strong>${fileMap[key]}</strong>: ${e.message}`;
+          document.getElementById("status").innerHTML = `Error loading <strong>${fileMap[key]}</strong>: ${e.message}`;
           document.getElementById("status").classList.add("error");
           break;
         }
       }
 
       if (!failed) {
-        document.getElementById("status").textContent = "✅ Name parts loaded.";
+        document.getElementById("status").textContent = "Name parts loaded.";
         document.getElementById("generateBtn").disabled = false;
       }
     }
